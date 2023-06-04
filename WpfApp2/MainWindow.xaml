@@ -1,0 +1,44 @@
+﻿<Window x:Class="WpfApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="Авторизация" Height="279" Width="435" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" Background="Transparent">
+    <Window.Resources>
+        <ResourceDictionary Source="Dictionary1.xaml" />
+    </Window.Resources>
+    <Border BorderBrush="LightBlue" BorderThickness="2">
+        <Grid MouseDown="Grid_MouseDown" >
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF292D4A" Offset="0.93"/>
+                <GradientStop Color="#FF3A427D" Offset="0.596"/>
+                <GradientStop Color="#FF363E75" Offset="0.049"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+
+
+            <RowDefinition Height="58*"/>
+            <RowDefinition Height="123*"/>
+            <RowDefinition Height="98*"/>
+
+
+        </Grid.RowDefinitions>
+        <Label Content="Авторизация" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Height="38" Width="153" />
+        <TextBox x:Name="tb_Login"  HorizontalAlignment="Left" Margin="187,32,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="141" Height="28" TextChanged="tb_Login_TextChanged" ForceCursor="True"/>
+        <TextBox x:Name="tb_Password" HorizontalAlignment="Left" Margin="187,72,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="141" Height="28" TextChanged="tb_Password_TextChanged"/>
+        <Label Content="Пароль:" HorizontalAlignment="Left" Margin="121,73,0,0" VerticalAlignment="Top" Grid.Row="1" Height="27" Width="61" />
+        <Label Content="Логин:" HorizontalAlignment="Left" Margin="133,32,0,0" VerticalAlignment="Top" Grid.Row="1" Height="27" Width="52"/>
+        <Button x:Name="btn_Entry" Content="Войти" HorizontalAlignment="Left" Margin="168,37,0,0" Grid.Row="2" VerticalAlignment="Top" Height="27" Width="105" Click="btn_Entry_Click" Background="#FF46589E"  />
+        <Image x:Name="img_Close" HorizontalAlignment="Left" Height="16" Margin="409,8,0,0" VerticalAlignment="Top" Width="17" Source="Resources/close.png" MouseLeftButtonDown="img_Close_MouseLeftButtonDown" />
+        <Image x:Name="img_Sver" Source="Resources/svern.png" HorizontalAlignment="Left" Height="17" Margin="387,8,0,0" VerticalAlignment="Top" Width="20" Opacity="0.5" MouseLeftButtonDown="img_Sver_MouseLeftButtonDown"/>
+        <Label x:Name="lbl_log" Content="Ваш логин" HorizontalAlignment="Left" Margin="191,34,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="12" IsEnabled="False" Width="68" Height="21" IsHitTestVisible="False"/>
+        <Label x:Name="lbl_pass" Content="Ваш пароль" HorizontalAlignment="Left" Margin="191,74,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="12" IsEnabled="False" Width="77" Height="24" IsHitTestVisible="False"/>
+
+
+    </Grid>
+    </Border>
+</Window>

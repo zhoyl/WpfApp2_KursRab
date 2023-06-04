@@ -1,0 +1,218 @@
+﻿<Window x:Class="WpfApp2.AddWorkers"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="AddWorkers" Height="450" Width="333" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" Background="Transparent">
+    <Window.Resources>
+        <!--<LinearGradientBrush x:Key="MenuPopupBrush"
+                     EndPoint="0.5,1"
+                     StartPoint="0.5,0">
+            <GradientStop Color="LightBlue"
+                Offset="0" />
+            <GradientStop Color="LightGray"
+                Offset="0.5" />
+            <GradientStop Color="LightBlue"
+                Offset="1" />-->
+        <!--</LinearGradientBrush>-->
+
+        <!--<LinearGradientBrush x:Key="ProgressBarIndicatorAnimatedFill"
+                     StartPoint="0,0"
+                     EndPoint="1,0">
+            <LinearGradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="LightBlue"
+                    Offset="0" />
+                    <GradientStop Color="DarkBlue"
+                    Offset="0.4" />
+                    <GradientStop Color="LightBlue"
+                    Offset="0.6" />
+                    <GradientStop Color="#000000FF"
+                    Offset="1" />
+                </GradientStopCollection>
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>-->
+
+
+        <Style x:Key="{x:Type RadioButton}"
+       TargetType="{x:Type RadioButton}">
+            <Setter Property="SnapsToDevicePixels"
+          Value="true" />
+            <Setter Property="OverridesDefaultStyle"
+          Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <BulletDecorator Background="Transparent">
+                            <BulletDecorator.Bullet>
+                                <Grid Width="13"
+                  Height="13">
+                                    <Ellipse x:Name="Border"
+                       StrokeThickness="1">
+                                        <Ellipse.Stroke>
+                                            <LinearGradientBrush EndPoint="0.2,0.8"
+                                       StartPoint="0.5,0">
+                                                <GradientStop Color="DeepSkyBlue" Offset="0" />
+                                                <GradientStop Color="White" Offset="1" />
+                                                <GradientStop Color="DarkBlue" Offset="3" />
+                                            </LinearGradientBrush>
+                                        </Ellipse.Stroke>
+                                        <Ellipse.Fill>
+                                            <LinearGradientBrush StartPoint="0,0"
+                                       EndPoint="0,1">
+                                                <LinearGradientBrush.GradientStops>
+                                                    <GradientStopCollection>
+                                                        <GradientStop Color="Transparent" />
+                                                        <GradientStop Color="Transparent"
+                                      Offset="1.0" />
+                                                    </GradientStopCollection>
+                                                </LinearGradientBrush.GradientStops>
+                                            </LinearGradientBrush>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                    <Ellipse x:Name="CheckMark"
+                       Margin="4"
+                       Visibility="Collapsed">
+                                        <Ellipse.Fill>
+                                            <SolidColorBrush Color="Wheat" />
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                </Grid>
+                            </BulletDecorator.Bullet>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Shape.Fill).
+                    (GradientBrush.GradientStops)[1].(GradientStop.Color)">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                         Value="Wheat" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Shape.Fill).
+                    (GradientBrush.GradientStops)[1].(GradientStop.Color)">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                         Value="Wheat" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Shape.Fill).
+                    (GradientBrush.GradientStops)[1].(GradientStop.Color)">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                         Value="Transparent" />
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Shape.Stroke).
+                    (GradientBrush.GradientStops)[1].(GradientStop.Color)">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                         Value="#40000000" />
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Shape.Stroke).
+                    (GradientBrush.GradientStops)[0].(GradientStop.Color)">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                         Value="#40000000" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="CheckStates">
+                                    <VisualState x:Name="Checked">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
+                                                 Storyboard.TargetName="CheckMark">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                            Value="{x:Static Visibility.Visible}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unchecked" />
+                                    <VisualState x:Name="Indeterminate" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter Margin="4,0,0,0"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left"
+                            RecognizesAccessKey="True" />
+                        </BulletDecorator>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Border BorderBrush="LightBlue" BorderThickness="2">
+        <Grid Margin="0,0,0,-26" Name="gd" MouseDown="gd_MouseDown">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF292D4A" Offset="0.93"/>
+                    <GradientStop Color="#FF3A427D" Offset="0.596"/>
+                    <GradientStop Color="#FF363E75" Offset="0.049"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="83*"/>
+                <RowDefinition Height="325*"/>
+                <RowDefinition Height="64*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="82*"/>
+                <ColumnDefinition Width="85*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Grid.Row="1" Margin="0,0,2,0">
+                <Label Content="Имя:" HorizontalAlignment="Right" Margin="0,10,0,5" Height="26" Width="45" Grid.Row="1"/>
+                <Label Content="Фамилия:" HorizontalAlignment="Right" Margin="0,0,0,5" Height="26" Width="75" Grid.Row="1"/>
+                <Label Content="Отчество:" HorizontalAlignment="Right" Margin="0,0,0,7" Height="26" Width="74" Grid.Row="1"/>
+                <Label Content="Паспортные данные:" HorizontalAlignment="Right" Margin="0,0,0,10" Height="26" Width="145" Grid.Row="1"/>
+                <Label Content="Номер телефона:" Height="26" Width="123" Margin="0,0,0,0" HorizontalAlignment="Right"/>
+                <Label x:Name="lbl_Login"    Visibility="Hidden" HorizontalAlignment="Right" Content="Логин:" Margin="0,10,0,10" Height="25" Width="98" Grid.Row="1" ></Label>
+                <Label x:Name="lbl_Password"  Visibility="Hidden" Content="Пароль:"  HorizontalAlignment="Right" Margin="0,0,0,5" Height="26" Width="93" Grid.Row="1"/>
+                <Label x:Name="lbl_Role" Visibility="Hidden"  Content="Роль:"  HorizontalAlignment="Right" Margin="5,0,0,5" Height="26" Width="78" Grid.Row="1"/>
+                <Label x:Name="lbl_Email"  Visibility="Hidden"  Content="Email:"  HorizontalAlignment="Right" Margin="5,0,0,0" Height="26" Width="50" Grid.Row="1"/>
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Grid.Row="1">
+                <TextBox x:Name="tb_Name" HorizontalAlignment="Left" Height="23" Margin="0,10,0,10" TextWrapping="Wrap" Text="{Binding Name}" Width="143" Grid.ColumnSpan="2" Grid.Row="1" TextChanged="tb_Name_TextChanged" />
+                <TextBox x:Name="tb_Surname" HorizontalAlignment="Left" Height="23" Margin="0,0,0,0" TextWrapping="Wrap" Text="{Binding Surname}" Width="143" Grid.ColumnSpan="2" Grid.Row="1" TextChanged="tb_Surname_TextChanged"/>
+                <TextBox x:Name="tb_Patronymic" HorizontalAlignment="Left" Height="23" Margin="0,10,0,10" TextWrapping="Wrap" Text="{Binding Patronymic}" VerticalAlignment="Top" Width="143" Grid.ColumnSpan="2" Grid.Row="1" TextChanged="tb_Patronymic_TextChanged"/>
+                <TextBox x:Name="tb_PassportData" HorizontalAlignment="Left" Height="24" Margin="0,0,0,0" TextWrapping="Wrap" Text="{Binding Passport_data}" VerticalAlignment="Top" Width="143" Grid.ColumnSpan="2" Grid.Row="1" TextChanged="tb_PassportData_TextChanged"/>
+                <TextBox x:Name="tb_Telephone" HorizontalAlignment="Left" Height="24" Margin="0,10,0,10" TextWrapping="Wrap" Text="{Binding Telephone}" VerticalAlignment="Top" Width="143" Grid.ColumnSpan="2" Grid.Row="1" TextChanged="tb_Telephone_TextChanged"/>
+                <TextBox x:Name="tb_Login" Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="0,0,0,10" TextWrapping="Wrap" Text="{Binding Login}" Width="140" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="1"/>
+                <TextBox x:Name="tb_Password" Visibility="Hidden"    HorizontalAlignment="Left" Height="24" Margin="0,0,0,10" TextWrapping="Wrap" Text="{Binding Password}" Width="140" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="1" TextChanged="tb_Password_TextChanged"/>
+                <ComboBox x:Name="cb_Role" Visibility="Hidden"   Margin="0,0,0,5" HorizontalAlignment="Left" SelectedItem="Role" DisplayMemberPath="Role_Name" Width="140" />
+                <TextBox x:Name="tb_Email"  Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Email}" Width="140" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="1" />
+
+
+                <TextBox Visibility="Hidden"   x:Name="tb_Experience" Margin="0,-135,0,0"   HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" Text="{Binding Experience}" VerticalAlignment="Top" Width="140" Grid.ColumnSpan="2" Grid.Row="1" TextChanged="tb_Experience_TextChanged" />
+                <ComboBox  Visibility="Hidden"  x:Name="cb_Category" Margin="0,-100,0,0"  HorizontalAlignment="Left" Height="24" SelectedItem="Categories" DisplayMemberPath="Num_Category" SelectedValuePath="Num_Category" VerticalAlignment="Top" Width="140" Grid.ColumnSpan="2" Grid.Row="1" />
+
+            </StackPanel>
+            <Button x:Name="btn_SaveWork"  Content="Сохранить" HorizontalAlignment="Left" Margin="0,5,0,25"  Width="140" Click="btn_SaveWork_Click" Grid.Row="2" Grid.Column="1" />
+
+            <StackPanel x:Name="sp" Margin="10,21,145,15" Grid.ColumnSpan="2">
+                <RadioButton  x:Name="rb_Workers" Content="Сотрудник фитнес-клуба" Foreground="White" HorizontalAlignment="Left" Margin="17,10,0,0" VerticalAlignment="Top" Checked="rb_Workers_Checked">
+                </RadioButton>
+                <RadioButton x:Name="rb_Trainers" Content="Тренер фитнес-клуба" Foreground="White" HorizontalAlignment="Left" Margin="17,5,0,0" VerticalAlignment="Top" Checked="rb_Trainers_Checked"/>
+            </StackPanel>
+
+            <Button x:Name="btn_SaveTrain" Visibility="Hidden" Content="Сохранить" HorizontalAlignment="Left" Margin="0,5,0,25"  Width="140" Click="btn_SaveTrain_Click" Grid.Column="1" Grid.Row="2"  />
+
+            <Image x:Name="img_Close" HorizontalAlignment="Left" Height="16" Margin="146,7,0,0" VerticalAlignment="Top" Width="17" Source="Resources/close.png" MouseLeftButtonDown="img_Close_MouseLeftButtonDown" Grid.Column="1" />
+            <Image x:Name="img_Sver" Source="Resources/svern.png" HorizontalAlignment="Left" Height="18" Margin="124,6,0,0" VerticalAlignment="Top" Width="20" Opacity="0.5" MouseLeftButtonDown="img_Sver_MouseLeftButtonDown" Grid.Column="1"/>
+            <Label x:Name="lbl_Status"  HorizontalAlignment="Left" Margin="112,194,0,0" VerticalAlignment="Top" Grid.Row="1" Content="{Binding Status}" Height="10" Width="10"/>
+
+        </Grid>
+    </Border>
+</Window>

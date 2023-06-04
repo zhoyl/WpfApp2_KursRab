@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ae678bf12b4a41db807c3993607d9702" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="alekseeva_KPModel.Class" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="alekseeva_KPModel.Clients" Width="1.5" PointX="8.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="alekseeva_KPModel.Contracts" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="alekseeva_KPModel.SeasonTicket" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="alekseeva_KPModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="alekseeva_KPModel.Trainers" Width="1.5" PointX="0.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="alekseeva_KPModel.Workers" Width="1.5" PointX="3.5" PointY="5.625" IsExpanded="true" />
+        <AssociationConnector Association="alekseeva_KPModel.FK_Contracts_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="alekseeva_KPModel.FK_Contracts_SeasonTicket" ManuallyRouted="false" />
+        <AssociationConnector Association="alekseeva_KPModel.FK_Contracts_Trainers" ManuallyRouted="false" />
+        <AssociationConnector Association="alekseeva_KPModel.FK_Contracts_Workers" ManuallyRouted="false" />
+        <AssociationConnector Association="alekseeva_KPModel.FK_Contracts_Class" />
+        <EntityTypeShape EntityType="alekseeva_KPModel.Role" Width="1.5" PointX="4" PointY="10.125" />
+        <AssociationConnector Association="alekseeva_KPModel.FK_Workers_Role" />
+        <EntityTypeShape EntityType="alekseeva_KPModel.Categories" Width="1.5" PointX="0.75" PointY="8.5" />
+        <AssociationConnector Association="alekseeva_KPModel.FK_Trainers_Categories" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

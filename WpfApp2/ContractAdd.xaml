@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
         Title="ContractAdd" Height="417" Width="424"  WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" Background="Transparent">
-    
+
     <Border BorderBrush="LightBlue" BorderThickness="2">
         <Grid MouseDown="Grid_MouseDown"  >
             <Grid.Background>
@@ -59,7 +59,7 @@
 
             <Button x:Name="btn_Client" Content="Выбрать &#xD;&#xA;клиента" HorizontalAlignment="Left" Margin="161,48,0,0" VerticalAlignment="Top" Width="106" Click="btn_Client_Click" Height="36" Grid.Column="1"  />
 
-            <Button x:Name="btn_Save" Content="Сохранить" HorizontalAlignment="Left" Margin="38,8,0,0" VerticalAlignment="Top" Width="120" Height="34" Click="btn_save_Click" Grid.Column="1" Grid.Row="1"/>
+            <Button x:Name="btn_Save" Content="Сохранить" HorizontalAlignment="Left" Margin="38,8,0,20" Width="120" Click="btn_save_Click" Grid.Column="1" Grid.Row="1"/>
 
             <Label Content="Имя клиента" HorizontalAlignment="Left" Margin="8,24,0,0" VerticalAlignment="Top" Height="26" Width="102"/>
             <Label Content="Фамилия клиента" HorizontalAlignment="Left" Margin="8,52,0,0" VerticalAlignment="Top" Height="26" Width="124"/>

@@ -137,7 +137,7 @@ namespace WpfApp2
                 app.tci_Contract.Visibility = Visibility.Visible;
                 app.tci_Contract.IsEnabled = true;
                 FitnesEntities.GetContext().SaveChanges();
-                MessageBox.Show("Запись добавлена");
+                MyMessageBox.Show("Уведомление о сохранении","Запись добавлена", MessageBoxButton.OK);
                 Close();
                 app.tc.SelectedItem = app.tci_Contract;
                 app.Show();

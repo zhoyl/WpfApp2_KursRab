@@ -141,7 +141,7 @@ namespace WpfApp2
                 {
                     p.Clients.Status = "Активный";
                 }
-                if()
+               
             }
 
             //var clientDelete = dg_Clients.SelectedItems.Cast<Clients>().ToList();

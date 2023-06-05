@@ -159,7 +159,25 @@ namespace WpfApp2
             f.Owner = this;
             f.Show();
         }
-
+        private void img_Close_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+            FitnessApp app = new FitnessApp();
+            //app.tci_Contract.Visibility = Visibility.Collapsed;
+            //app.tci_Otch.Visibility = Visibility.Collapsed;
+            app.Show();
+        }
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        } 
+        private void img_Sver_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
         private void cb_Type_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Update();
@@ -180,29 +198,11 @@ namespace WpfApp2
             Update();
         }
 
-        private void img_Close_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.Close();
-            FitnessApp app = new FitnessApp();
-            app.Show();
-        }
-
-        private void img_Sver_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
-
         private void cb_Trainer_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Update();
         }
 
-        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                this.DragMove();
-            }
-        }
+        
     }
 }

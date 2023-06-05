@@ -7,35 +7,6 @@
         mc:Ignorable="d"
         Title="AddWorkers" Height="450" Width="333" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" Background="Transparent">
     <Window.Resources>
-        <!--<LinearGradientBrush x:Key="MenuPopupBrush"
-                     EndPoint="0.5,1"
-                     StartPoint="0.5,0">
-            <GradientStop Color="LightBlue"
-                Offset="0" />
-            <GradientStop Color="LightGray"
-                Offset="0.5" />
-            <GradientStop Color="LightBlue"
-                Offset="1" />-->
-        <!--</LinearGradientBrush>-->
-
-        <!--<LinearGradientBrush x:Key="ProgressBarIndicatorAnimatedFill"
-                     StartPoint="0,0"
-                     EndPoint="1,0">
-            <LinearGradientBrush.GradientStops>
-                <GradientStopCollection>
-                    <GradientStop Color="LightBlue"
-                    Offset="0" />
-                    <GradientStop Color="DarkBlue"
-                    Offset="0.4" />
-                    <GradientStop Color="LightBlue"
-                    Offset="0.6" />
-                    <GradientStop Color="#000000FF"
-                    Offset="1" />
-                </GradientStopCollection>
-            </LinearGradientBrush.GradientStops>
-        </LinearGradientBrush>-->
-
-
         <Style x:Key="{x:Type RadioButton}"
        TargetType="{x:Type RadioButton}">
             <Setter Property="SnapsToDevicePixels"
@@ -187,12 +158,12 @@
                 <TextBox x:Name="tb_Name" HorizontalAlignment="Left" Height="23" Margin="0,10,0,10" TextWrapping="Wrap" Text="{Binding Name}" Width="143" Grid.ColumnSpan="2" Grid.Row="1" TextChanged="tb_Name_TextChanged" />
                 <TextBox x:Name="tb_Surname" HorizontalAlignment="Left" Height="23" Margin="0,0,0,0" TextWrapping="Wrap" Text="{Binding Surname}" Width="143" Grid.ColumnSpan="2" Grid.Row="1" TextChanged="tb_Surname_TextChanged"/>
                 <TextBox x:Name="tb_Patronymic" HorizontalAlignment="Left" Height="23" Margin="0,10,0,10" TextWrapping="Wrap" Text="{Binding Patronymic}" VerticalAlignment="Top" Width="143" Grid.ColumnSpan="2" Grid.Row="1" TextChanged="tb_Patronymic_TextChanged"/>
-                <TextBox x:Name="tb_PassportData" HorizontalAlignment="Left" Height="24" Margin="0,0,0,0" TextWrapping="Wrap" Text="{Binding Passport_data}" VerticalAlignment="Top" Width="143" Grid.ColumnSpan="2" Grid.Row="1" TextChanged="tb_PassportData_TextChanged"/>
-                <TextBox x:Name="tb_Telephone" HorizontalAlignment="Left" Height="24" Margin="0,10,0,10" TextWrapping="Wrap" Text="{Binding Telephone}" VerticalAlignment="Top" Width="143" Grid.ColumnSpan="2" Grid.Row="1" TextChanged="tb_Telephone_TextChanged"/>
+                <TextBox x:Name="tb_PassportData" MaxLength="10" HorizontalAlignment="Left" Height="24" Margin="0,0,0,0" TextWrapping="Wrap" Text="{Binding Passport_data}" VerticalAlignment="Top" Width="143" Grid.ColumnSpan="2" Grid.Row="1" TextChanged="tb_PassportData_TextChanged"/>
+                <TextBox x:Name="tb_Telephone" MaxLength="11"  HorizontalAlignment="Left" Height="24" Margin="0,10,0,10" TextWrapping="Wrap" Text="{Binding Telephone}" VerticalAlignment="Top" Width="143" Grid.ColumnSpan="2" Grid.Row="1" TextChanged="tb_Telephone_TextChanged"/>
                 <TextBox x:Name="tb_Login" Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="0,0,0,10" TextWrapping="Wrap" Text="{Binding Login}" Width="140" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="1"/>
                 <TextBox x:Name="tb_Password" Visibility="Hidden"    HorizontalAlignment="Left" Height="24" Margin="0,0,0,10" TextWrapping="Wrap" Text="{Binding Password}" Width="140" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="1" TextChanged="tb_Password_TextChanged"/>
                 <ComboBox x:Name="cb_Role" Visibility="Hidden"   Margin="0,0,0,5" HorizontalAlignment="Left" SelectedItem="Role" DisplayMemberPath="Role_Name" Width="140" />
-                <TextBox x:Name="tb_Email"  Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Email}" Width="140" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="1" />
+                <TextBox x:Name="tb_Email" Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Email}" Width="140" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="1" />
 
 
                 <TextBox Visibility="Hidden"   x:Name="tb_Experience" Margin="0,-135,0,0"   HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" Text="{Binding Experience}" VerticalAlignment="Top" Width="140" Grid.ColumnSpan="2" Grid.Row="1" TextChanged="tb_Experience_TextChanged" />

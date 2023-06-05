@@ -55,9 +55,9 @@
 
             <ComboBox x:Name="cb_Trainer" HorizontalAlignment="Left" Margin="38,251,0,0" VerticalAlignment="Top" Width="120" SelectedItem="{Binding Trainers}" DisplayMemberPath="Surname" Grid.Column="1" Height="22" SelectionChanged="cb_Trainer_SelectionChanged"/>
 
-            <TextBox x:Name="tb_Cost" IsReadOnly="true" HorizontalAlignment="Left" Margin="38,285,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Height="26" Text="{Binding Cost}" Grid.Column="1"/>
+            <TextBox x:Name="tb_Cost" IsReadOnly="true" HorizontalAlignment="Left" Margin="38,285,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Height="26" Text="{Binding Cost}" Grid.Column="1" IsEnabled="False"/>
 
-            <Button x:Name="btn_Client" Content="Выбрать &#xD;&#xA;клиента" HorizontalAlignment="Left" Margin="161,48,0,0" VerticalAlignment="Top" Width="106" Click="btn_Client_Click" Height="36" Grid.Column="1"  />
+            <Button x:Name="btn_Client" Content="Выбрать &#xD;&#xA;клиента" HorizontalAlignment="Left" Margin="161,48,0,0" VerticalAlignment="Top" Width="98" Click="btn_Client_Click" Height="36" Grid.Column="1"  />
 
             <Button x:Name="btn_Save" Content="Сохранить" HorizontalAlignment="Left" Margin="38,8,0,20" Width="120" Click="btn_save_Click" Grid.Column="1" Grid.Row="1"/>
 

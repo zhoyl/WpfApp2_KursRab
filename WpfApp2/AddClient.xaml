@@ -31,11 +31,11 @@
             <Label Content="Номер &#xD;&#xA;телефона:" Height="43" Width="104" HorizontalAlignment="Right" Margin="0,-10,0,5"/>
         </StackPanel>
         <StackPanel Grid.Column="1" >
-            <TextBox x:Name="tb_Name" Margin="10,30,10,10" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" />
-            <TextBox x:Name="tb_Surname" Margin="10,0,10,10"  HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Surname}" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="tb_Patronymic" Margin="10,0,10,10" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="{Binding Patronymic}" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="tb_PassportData" Margin="10,0,10,10"  HorizontalAlignment="Left" Height="24"  TextWrapping="Wrap" Text="{Binding Passport_data}" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="tb_Telephone" Margin="10,0,10,10" HorizontalAlignment="Left" Height="24"  TextWrapping="Wrap" Text="{Binding Telephone}" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="tb_Name" Margin="10,30,10,10" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" TextChanged="tb_Name_TextChanged" />
+            <TextBox x:Name="tb_Surname" Margin="10,0,10,10"  HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Surname}" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" TextChanged="tb_Surname_TextChanged"/>
+            <TextBox x:Name="tb_Patronymic" Margin="10,0,10,10" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="{Binding Patronymic}" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" TextChanged="tb_Patronymic_TextChanged"/>
+                <TextBox x:Name="tb_PassportData" MaxLength="10"  Margin="10,0,10,10"  HorizontalAlignment="Left" Height="24"  TextWrapping="Wrap" Text="{Binding Passport_data}" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" TextChanged="tb_PassportData_TextChanged"/>
+                <TextBox x:Name="tb_Telephone" MaxLength="11"  Margin="10,0,10,10" HorizontalAlignment="Left" Height="24"  TextWrapping="Wrap" Text="{Binding Telephone}" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" TextChanged="tb_Telephone_TextChanged"/>
         </StackPanel>
         <Button x:Name="btn_Save" Content="Сохранить" HorizontalAlignment="Left" Margin="92,0,0,0" VerticalAlignment="Center" Width="102" Height="34" Click="btn_save_Click" Grid.ColumnSpan="2" Grid.Row="1"/>
         <Image x:Name="img_Close" HorizontalAlignment="Left" Height="16" Margin="123,4,0,0" VerticalAlignment="Top" Width="17" Source="Resources/close.png" MouseLeftButtonDown="img_Close_MouseLeftButtonDown" Grid.Column="1" />

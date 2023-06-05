@@ -58,18 +58,93 @@ namespace WpfApp2
         public FitnessApp()
         {
             InitializeComponent();
-            //var titles = FitnesEntities.GetContext().Clients.Select(p => p.Status).ToList();
-            //titles.Insert(0, Title = "Все");
-            //cb_filter.ItemsSource = titles;
-            //cb_View.ItemsSource = FitnesEntities.GetContext().Class.ToList();
-            //cb_Trainer.ItemsSource = FitnesEntities.GetContext().Trainers.ToList();
             Update();
+            Cont();
             DataContext = _workers;
         }
        
+        public void Cont()
+        {
+            var seasTik = FitnesEntities.GetContext().SeasonTicket.Select(p => p.Days.ToString()).ToList();
+            seasTik.Insert(0, Title = "Все");
+            cb_SeasonTicketCon.ItemsSource = seasTik;
+            var cl = FitnesEntities.GetContext().Class.ToList();
+            var con = FitnesEntities.GetContext().Contracts.ToList();
+            con = con.Where(
+          p => p.Clients.Name.ToLower().Contains(tb_SearchCon.Text.ToLower())
+          || p.Clients.Surname.ToLower().Contains(tb_SearchCon.Text.ToLower())
+          || p.Clients.Patronymic.ToLower().Contains(tb_SearchCon.Text.ToLower())
+          || p.Clients.Telephone.ToLower().Contains(tb_SearchCon.Text.ToLower())
+          || p.Class.Name.ToLower().Contains(tb_SearchCon.Text.ToLower())
+          ||p.Class.Type.ToLower().Contains(tb_SearchCon.Text.ToLower())).ToList();
+            dg_Contracts.ItemsSource = con;
+
+            var employees = FitnesEntities.GetContext().Contracts;
+
+            foreach (var p in employees)
+            {
+                if (DateTime.Now > p.Date_of_conclusion.AddDays(p.SeasonTicket.Days))
+                {
+                    p.Clients.Status = "Неактивный";
+                }
+
+                if (DateTime.Now < p.Date_of_conclusion.AddDays(p.SeasonTicket.Days))
+                {
+                    p.Clients.Status = "Активный";
+                }
+            }
+
+            foreach (var p in employees)
+            {
+                if (p.Clients.Status == "Неактивный")
+                {
+                    if (DateTime.Now < p.Date_of_conclusion.AddDays(p.SeasonTicket.Days))
+                    {
+                        p.Clients.Status = "Активный";
+                    }
+                }
+            }
+            switch (cb_TypeCon.SelectedIndex)
+            {
+                case 1:
+                   con = con.Where(p => p.Class.Type=="Индивидуальный").ToList();
+                    dg_Contracts.ItemsSource = con;
+                    break;
+
+                case 2:
+                    con = con.Where(p => p.Class.Type == "Групповой").ToList();
+                    dg_Contracts.ItemsSource = con;
+                    break;
+            }
+            switch (cb_SeasonTicketCon.Text)
+            {
+                case "1":
+                    con = con.Where(p => p.SeasonTicket.Days == 1).ToList();
+                    dg_Contracts.ItemsSource = con;
+                    break;
+                case "30":
+                    con = con.Where(p => p.SeasonTicket.Days == 30).ToList();
+                    dg_Contracts.ItemsSource = con;
+                    break;
+                case "90":
+                    con = con.Where(p => p.SeasonTicket.Days == 90).ToList();
+                    dg_Contracts.ItemsSource = con;
+                    break;
+                case "120":
+                    con = con.Where(p => p.SeasonTicket.Days == 120).ToList();
+                    dg_Contracts.ItemsSource = con;
+                    break;
+                case "360":
+                    con = con.Where(p => p.SeasonTicket.Days == 360).ToList();
+                    dg_Contracts.ItemsSource = con;
+                    break;
+            }
+        }
         public void Update()
         {
             var query = FitnesEntities.GetContext().Clients.ToList();
+            var sot = FitnesEntities.GetContext().Workers.ToList();
+            var train = FitnesEntities.GetContext().Trainers.ToList();
 
             if (cb_filter.SelectedIndex ==1)
             {
@@ -81,9 +156,6 @@ namespace WpfApp2
                 query = query.Where(p => p.Status =="Неактивный").ToList();
                 dg_Clients.ItemsSource = query;
             }
-
-            var sot = FitnesEntities.GetContext().Workers.ToList();
-            var train = FitnesEntities.GetContext().Trainers.ToList();
 
             if (cb_filterS.SelectedIndex == 1)
             {
@@ -108,7 +180,6 @@ namespace WpfApp2
                 || p.Status.ToLower().Contains(tb_Search.Text.ToLower())).ToList();
             dg_Clients.ItemsSource = query;
 
-           
             train = train.Where(
                 p => p.Name.ToLower().Contains(tb_SearchWorker.Text.ToLower())
                 || p.Surname.ToLower().Contains(tb_SearchWorker.Text.ToLower())
@@ -126,67 +197,8 @@ namespace WpfApp2
                 || p.Status.ToLower().Contains(tb_SearchWorker.Text.ToLower())).ToList();
             dg_Workwers.ItemsSource = sot;
 
-            dg_Contracts.ItemsSource = FitnesEntities.GetContext().Contracts.ToList();
+            //dg_Contracts.ItemsSource = FitnesEntities.GetContext().Contracts.ToList();
 
-            var employees = FitnesEntities.GetContext().Contracts;
-
-            foreach (var p in employees)
-            {
-               if (DateTime.Now > p.Date_of_conclusion.AddYears(2))
-               {
-                p.Clients.Status= "Неактивный";
-               }  
-
-                if (DateTime.Now < p.Date_of_conclusion.AddYears(2))
-                {
-                    p.Clients.Status = "Активный";
-                }
-               
-            }
-
-            //var clientDelete = dg_Clients.SelectedItems.Cast<Clients>().ToList();
-            //var employees = FitnesEntities.GetContext().Contracts;
-            //var employees1 = FitnesEntities.GetContext().Clients;
-            //foreach (var p in clientDelete)
-            //{
-            //    foreach (var q in employees)
-            //    {
-            //        if (p.Name == q.Clients.Name && p.Surname == q.Clients.Surname && p.Patronymic == q.Clients.Patronymic)
-            //        {
-            //            MyMessageBox.Show("Ошибка удаления", "В таблице Договоры есть связь с клиентом", MessageBoxButton.OK);
-            //            x = true;
-            //            break;
-            //        }
-            //        else x = false;
-            //        //else
-            //        //    if (p.Name != q.Clients.Name && p.Surname != q.Clients.Surname && p.Patronymic != q.Clients.Patronymic)
-            //        //{ 
-            //        //    MyMessageBox.Show("Удаление", "Удаление успешно проведено!", MessageBoxButton.OK); break; 
-            //        //}
-            //    }
-
-            //}
-            //if (x == false)
-            //{
-            //    try
-            //    {
-            //        FitnesEntities.GetContext().Clients.RemoveRange(clientDelete);
-            //        FitnesEntities.GetContext().SaveChanges();
-            //        MyMessageBox.Show("Удаление", "Удаление успешно проведено!", MessageBoxButton.OK); x = true;
-            //    }
-            //    catch (Exception ex) { MyMessageBox.Show("Ошибка удаления", ex.Message.ToString(), MessageBoxButton.OK); }
-            //}
-
-            //if (x == false)
-            //{
-            //    try
-            //    {
-            //        FitnesEntities.GetContext().Clients.RemoveRange(clientDelete);
-            //        FitnesEntities.GetContext().SaveChanges();
-            //        MyMessageBox.Show("Удаление", "Удаление успешно проведено!", MessageBoxButton.OK); x = true;
-            //    }
-            //    catch (Exception ex) { MyMessageBox.Show("Ошибка удаления", ex.Message.ToString(), MessageBoxButton.OK); }
-            //}
 
             //Отчет
 
@@ -232,6 +244,8 @@ namespace WpfApp2
                     add.tb_Patronymic.Text = clients.Patronymic;
                     add.tbl.Text = clients.id_Client.ToString();
                     add.lbl_Status.Content = clients.Status;
+                    //tci_Otch.Visibility = Visibility.Visible;
+                    //tci_Contract.Visibility = Visibility.Visible;
                     this.Close();
                 }
             }
@@ -449,6 +463,7 @@ namespace WpfApp2
             //dg_Trainers.ItemsSource = FitnesEntities.GetContext().Trainers.ToList();
             //dg_Workwers.ItemsSource = FitnesEntities.GetContext().Workers.ToList();
             Update();
+            Cont();
         }
 
         private void dg_Contracts_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -519,10 +534,14 @@ namespace WpfApp2
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Left)
+            try
             {
-                this.DragMove();
+                if (e.ChangedButton == MouseButton.Left)
+                {
+                    this.DragMove();
+                }
             }
+            catch { }
         }
 
         private void cb_filter_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -577,7 +596,36 @@ namespace WpfApp2
 
         }
 
-      
+        private void tb_SearchCon_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Cont();
+        }
+
+        private void cb_TypeCon_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Cont();
+        }
+
+        private void cb_SeasonTicketCon_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Cont();
+        }
+
+        private void cb_TrainerCon_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Update();
+        }
+
+        private void tci_Contract_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                Contracts c = dg_Contracts.SelectedItem as Contracts;
+                MyMessageBox.Show("Информация о клиенте","ФИО: " + c.Clients.Surname  + " " + c.Clients.Name + " " + c.Clients.Patronymic + "; \nПаспортные данные: " + c.Clients.Passport_data + "; \nНомер телефона: " + c.Clients.Telephone, MessageBoxButton.OK);
+                //FitnesEntities.GetContext().Contracts.RemoveRange(contrDelete);
+            }
+            catch { }
+        }
     }
     //class AgeToColorConverter : IValueConverter
     //{

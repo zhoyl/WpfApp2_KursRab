@@ -74,7 +74,7 @@ namespace WpfApp2
 
                         case 3:
                             MessageBox.Show("Директор" + p.Role.Role_Name + " " + p.Surname + " " + p.Name + " " + p.Patronymic);   
-                            f.dg_Contracts.Margin = new Thickness(-100, 50, 20, 20);
+                            f.dg_Contracts.Margin = new Thickness(-100, 80, 20, 20);
                             f.dg_Clients.Margin = new Thickness(-100, 40, 20, 20);
                             f.dg_Workwers.Margin = new Thickness(-120, 60, 20, 220);
                             f.dg_Trainers.Margin = new Thickness(-120, 260, 20, 20);

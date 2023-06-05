@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,6 +20,8 @@ namespace WpfApp2
     /// <summary>
     /// Логика взаимодействия для AddWorkers.xaml
     /// </summary>
+    /// 
+   
     public partial class AddWorkers : Window
     {
         private Workers _workers = new Workers();
@@ -36,7 +40,6 @@ namespace WpfApp2
         {
             AccessWork();
         }
-
         private void rb_Trainers_Checked(object sender, RoutedEventArgs e)
         {
             AccessTrain();
@@ -77,27 +80,30 @@ namespace WpfApp2
                 MyMessageBox.Show("Уведомление об ошибке сохранения", ex.Message.ToString(), MessageBoxButton.OK);
             }
         }
-
         private void btn_SaveTrain_Click(object sender, RoutedEventArgs e)
         {
             lbl_Status.Content = "Работает";
             Trainer();
             DataContext = _trainers;
             StringBuilder error = new StringBuilder();
-            //Проверка на пустой текст
+
             if (string.IsNullOrWhiteSpace(_trainers.Name)) { error.AppendLine("Укажите имя "); }
             if (string.IsNullOrWhiteSpace(_trainers.Surname)) { error.AppendLine("Укажите фамилию "); }
             if (string.IsNullOrWhiteSpace(_trainers.Telephone)) { error.AppendLine("Укажите телефон "); }
             if (string.IsNullOrWhiteSpace(_trainers.Passport_data)) { error.AppendLine("Укажите паспортные данные "); }
-            //if (string.IsNullOrWhiteSpace(_trainers.Categories.Num_Category.ToString())) { error.AppendLine("Укажите категорию тренера"); }
-            //if (_trainers.Categories.Num_Category < 0 || _trainers.Categories.Num_Category > 3) { error.AppendLine("Категория тренера может быть 1,2,3/ Небыть совсем"); }
             if (_trainers.Experience < 0 || _trainers.Experience > 100) { error.AppendLine("Укажите корректных опыт работы тренера"); }
             if (string.IsNullOrWhiteSpace(_trainers.Experience.ToString())) { error.AppendLine("Укажите опыт работы тренера"); }
 
-            //Проверка на ошибки
             if (error.Length > 0) { MyMessageBox.Show("Ошибка добавления!", error.ToString(), MessageBoxButton.OK); return; }
 
             if (_trainers.id_Trainer == 0) { FitnesEntities.GetContext().Trainers.Add(_trainers); }
+
+            string s = tb_Name.Text;
+            string s1 = tb_Surname.Text;
+            string s2 = tb_Patronymic.Text;
+         
+
+          
 
             try
             {
@@ -173,16 +179,13 @@ namespace WpfApp2
         {
             try
             {
-
                 _trainers.Status = lbl_Status.Content.ToString();
                 _trainers.Name = tb_Name.Text;
                 _trainers.Surname = tb_Surname.Text;
                 _trainers.Patronymic = tb_Patronymic.Text;
                 _trainers.Passport_data = tb_PassportData.Text;
                 _trainers.Telephone = tb_Telephone.Text;
-                //_trainers.id_Category= Convert.ToInt32(cb_Category.SelectedItem);
                 _trainers.id_Category = Convert.ToInt32(cb_Category.SelectedValue);
-                //_trainers.Categories.Num_Category = 2;
                 _trainers.Experience = Convert.ToInt32(tb_Experience.Text);
             }
             catch { }
@@ -206,8 +209,6 @@ namespace WpfApp2
             }
         }
 
-       
-
         private void tb_Experience_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (sender is TextBox textBox)
@@ -216,29 +217,49 @@ namespace WpfApp2
             }
         }
 
-        //private void tb_Category_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-        //    if (sender is TextBox textBox)
-        //    {
-        //        tb_Category.Text = new string(textBox.Text.Where(ch => (ch >= '0' && ch <= '9')).ToArray());
-        //    }
-        //}
-
         private void tb_Password_TextChanged(object sender, TextChangedEventArgs e)
         {
             
         }
-
+        int name = 0;
+        int surname = 0;
+        int patro = 0;
         private void tb_Name_TextChanged(object sender, TextChangedEventArgs e)
         {
+            name++;
+            if (name == 1)
+            {
+                tb_Name.Text = tb_Name.Text[0].ToString().ToUpper();
+            }
+            else
+            {
+                tb_Name.SelectionStart = tb_Name.Text.Length;
+            }
+            if (tb_Name.Text.Length == 0)
+            {
+                name = 0;
+            }
             if (sender is TextBox textBox)
             {
                 tb_Name.Text = new string(textBox.Text.Where(ch => (ch >= 'а' && ch <= 'я') || (ch >= 'А' && ch <= 'Я') || ch == 'ё' || ch == 'Ё').ToArray());
             }
         }
-
+        
         private void tb_Surname_TextChanged(object sender, TextChangedEventArgs e)
         {
+            surname++;
+            if (surname == 1)
+            {
+                tb_Surname.Text = tb_Surname.Text[0].ToString().ToUpper();
+            }
+            else
+            {
+                tb_Surname.SelectionStart = tb_Surname.Text.Length;
+            }
+            if (tb_Surname.Text.Length == 0)
+            {
+                surname = 0;
+            }
             if (sender is TextBox textBox)
             {
                 tb_Surname.Text = new string(textBox.Text.Where(ch => (ch >= 'а' && ch <= 'я') || (ch >= 'А' && ch <= 'Я') || ch == 'ё' || ch == 'Ё').ToArray());
@@ -247,6 +268,19 @@ namespace WpfApp2
 
         private void tb_Patronymic_TextChanged(object sender, TextChangedEventArgs e)
         {
+            patro++;
+            if (patro == 1)
+            {
+                tb_Patronymic.Text = tb_Patronymic.Text[0].ToString().ToUpper();
+            }
+            else
+            {
+                tb_Patronymic.SelectionStart = tb_Patronymic.Text.Length;
+            }
+            if (tb_Patronymic.Text.Length == 0)
+            {
+                patro = 0;
+            }
             if (sender is TextBox textBox)
             {
                 tb_Patronymic.Text = new string(textBox.Text.Where(ch => (ch >= 'а' && ch <= 'я') || (ch >= 'А' && ch <= 'Я') || ch == 'ё' || ch == 'Ё').ToArray());
@@ -270,20 +304,10 @@ namespace WpfApp2
             }
         }
 
-
-
-        //private void Workers()
-        //{
-        //    FitnessApp add = new FitnessApp();
-        //    //tb_Name.Text = Convert.ToString(add.dg_Workwers.CurrentCell.);
-        //    tb_Surname.Text = _workers.Surname;
-        //    tb_Patronymic.Text = _workers.Patronymic;
-        //    tb_PassportData.Text = _workers.Passport_data;
-        //    tb_Telephone.Text = _workers.Telephone;
-        //    tb_Login.Text = _workers.Login;
-        //    tb_Password.Text = _workers.Password;
-        //    cb_Role.SelectedItem = _workers.Role;
-
-        //}
+        private void tb_Email_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string emailPattern = @"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$";
+            bool isItEmail = Regex.IsMatch(tb_Email.Text, emailPattern);
+        }
     }
 }

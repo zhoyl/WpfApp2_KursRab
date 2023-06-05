@@ -34,35 +34,28 @@ namespace WpfApp2
             _clients.Status = lbl_Status.Content.ToString();
             DataContext = _clients;
             StringBuilder error = new StringBuilder();
-            //Проверка на пустой текст
+
             if (string.IsNullOrWhiteSpace(_clients.Name)) { error.AppendLine("Укажите имя клиента"); }
             if (string.IsNullOrWhiteSpace(_clients.Surname)) { error.AppendLine("Укажите фамилию клиента"); }
             if (string.IsNullOrWhiteSpace(_clients.Telephone)) { error.AppendLine("Укажите телефон клиента"); }
             if (string.IsNullOrWhiteSpace(_clients.Passport_data)) { error.AppendLine("Укажите паспортные данные клиента"); }
 
-            //Проверка на ошибки
-            if (error.Length > 0) { MessageBox.Show(error.ToString()); return; }
+            if (error.Length > 0) { MyMessageBox.Show("Ошибка добавлениия",error.ToString(), MessageBoxButton.OK); return; }
 
             if (_clients.id_Client == 0) { FitnesEntities.GetContext().Clients.Add(_clients); }
 
             try
             {
                 FitnesEntities.GetContext().SaveChanges();
-                MessageBox.Show("Запись добавлена");
+                MyMessageBox.Show("Добавление улиента","Клиент добавлен", MessageBoxButton.OK);
                 Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MyMessageBox.Show("Ошибка добавления",ex.Message.ToString(),MessageBoxButton.OK);
             }
          
-        }
-
-        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
+        }  
         private void img_Sver_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -78,6 +71,92 @@ namespace WpfApp2
             if (e.ChangedButton == MouseButton.Left)
             {
                 this.DragMove();
+            }
+        }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+        int name = 0;
+        int surname = 0;
+        int patro = 0;
+        private void tb_Name_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            name++;
+            if (name == 1)
+            {
+                tb_Name.Text = tb_Name.Text[0].ToString().ToUpper();
+            }
+            else
+            {
+                tb_Name.SelectionStart = tb_Name.Text.Length;
+            }
+            if (tb_Name.Text.Length == 0)
+            {
+                name = 0;
+            }
+            if (sender is TextBox textBox)
+            {
+                tb_Name.Text = new string(textBox.Text.Where(ch => (ch >= 'а' && ch <= 'я') || (ch >= 'А' && ch <= 'Я') || ch == 'ё' || ch == 'Ё').ToArray());
+            }
+        }
+
+        private void tb_Surname_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            surname++;
+            if (surname == 1)
+            {
+                tb_Surname.Text = tb_Surname.Text[0].ToString().ToUpper();
+            }
+            else
+            {
+                tb_Surname.SelectionStart = tb_Surname.Text.Length;
+            }
+            if (tb_Surname.Text.Length == 0)
+            {
+                surname = 0;
+            }
+            if (sender is TextBox textBox)
+            {
+                tb_Surname.Text = new string(textBox.Text.Where(ch => (ch >= 'а' && ch <= 'я') || (ch >= 'А' && ch <= 'Я') || ch == 'ё' || ch == 'Ё').ToArray());
+            }
+        }
+
+        private void tb_Patronymic_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            patro++;
+            if (patro == 1)
+            {
+                tb_Patronymic.Text = tb_Patronymic.Text[0].ToString().ToUpper();
+            }
+            else
+            {
+                tb_Patronymic.SelectionStart = tb_Patronymic.Text.Length;
+            }
+            if (tb_Patronymic.Text.Length == 0)
+            {
+                patro = 0;
+            }
+            if (sender is TextBox textBox)
+            {
+                tb_Patronymic.Text = new string(textBox.Text.Where(ch => (ch >= 'а' && ch <= 'я') || (ch >= 'А' && ch <= 'Я') || ch == 'ё' || ch == 'Ё').ToArray());
+            }
+        }
+
+        private void tb_Telephone_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (sender is TextBox textBox)
+            {
+                tb_Telephone.Text = new string(textBox.Text.Where(ch => (ch >= '0' && ch <= '9')).ToArray());
+            }
+        }
+
+        private void tb_PassportData_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (sender is TextBox textBox)
+            {
+                tb_PassportData.Text = new string(textBox.Text.Where(ch => (ch >= '0' && ch <= '9')).ToArray());
             }
         }
     }

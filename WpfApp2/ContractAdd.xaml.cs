@@ -38,13 +38,13 @@ namespace WpfApp2
                 tbl.Text = selectedContr.id_Client.ToString();
                 if (selectedContr.Class.Type == "Индивидуальный") { cb_Type.SelectedIndex = 0; } else { cb_Type.SelectedIndex = 1; }
             }
-            cb_Trainer.ItemsSource = FitnesEntities.GetContext().Trainers.ToList();
-            cb_Worker.ItemsSource = FitnesEntities.GetContext().Workers.ToList();
             DataContext = _contr;
             Update();
         }
         public void Update()
         {
+            cb_Trainer.ItemsSource = FitnesEntities.GetContext().Trainers.Where(p => p.Status == "Работает" || p.Status == "нет").ToList();
+            cb_Worker.ItemsSource = FitnesEntities.GetContext().Workers.Where(p => p.Status == "Работает").ToList();
             var days = FitnesEntities.GetContext().SeasonTicket.ToList();
             //Автозаполнение textBox 
             var query = FitnesEntities.GetContext().Clients.ToList();
@@ -78,6 +78,7 @@ namespace WpfApp2
 
                 case 1:
                     cb_View.IsEnabled = true; cb_View.ItemsSource = cl.Where(p => p.Type.Contains("Групповой"));
+                    cb_Trainer.ItemsSource = FitnesEntities.GetContext().Trainers.Where(p => p.Status == "Работает").ToList();
                     cb_SeasonTicket.ItemsSource = days;
                     if (cb_View.SelectedIndex > -1)
                     {

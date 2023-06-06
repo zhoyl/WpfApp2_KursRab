@@ -48,7 +48,6 @@ namespace WpfApp2
             }
         }
 
-      
         void AddButton(string text, MessageBoxResult result, bool isCancel = false)
         {
             var button = new Button() { Content = text, IsCancel = isCancel };

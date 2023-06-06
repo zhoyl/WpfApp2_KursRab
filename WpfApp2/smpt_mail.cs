@@ -26,7 +26,6 @@ namespace WpfApp2
             SmtpClient smtp = new SmtpClient(host, smptPort);
             smtp.Credentials = new NetworkCredential(emailFrom, password);
             smtp.EnableSsl=true;
-
             smtp.Send(mail);
         }
     }

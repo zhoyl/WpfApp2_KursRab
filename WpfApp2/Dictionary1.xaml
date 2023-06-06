@@ -40,9 +40,6 @@
         <Setter Property="FontSize" Value="14"/>
     </Style>
 
- 
-
-    <!--#424972 спокойный-->
     <Style TargetType="ComboBox">
         <Setter Property="FontFamily" Value="Arial"/>
         <Setter Property="FontSize" Value="14"/>
@@ -114,12 +111,6 @@
         </Setter>
     </Style>
 
-    <!--<Style TargetType="TabControl">
-        <Setter Property="Background" Value="#131A51"/>
-        <Setter Property="Foreground" Value="#FFE5E7FB"/>
-
-    </Style>-->
-
     <Style TargetType="TabItem">
         <Setter Property="Foreground" Value="#FFE5E7FB"/>
         <Setter Property="FontSize" Value="14"/>
@@ -147,8 +138,4 @@
         </Setter>
     </Style>
 
-
-    <!--#FF313338" не совсем темный-->
-    <!--#FF23272A-->
-    <!--D #FF2E3F51   C #FF3A7ED1     A #FF173152  B #FF7DA7D9 E  #FF2C5F9E -->
 </ResourceDictionary>

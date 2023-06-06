@@ -164,8 +164,6 @@ namespace WpfApp2
         {
             this.Close();
             FitnessApp app = new FitnessApp();
-            //app.tci_Contract.Visibility = Visibility.Collapsed;
-            //app.tci_Otch.Visibility = Visibility.Collapsed;
             app.Show();
         }
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)

@@ -19,6 +19,8 @@ using Word = Microsoft.Office.Interop.Word;
 
 namespace WpfApp2
 {
+
+    //Класс конверта цвета
     class ColorConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -197,11 +199,7 @@ namespace WpfApp2
                 || p.Status.ToLower().Contains(tb_SearchWorker.Text.ToLower())).ToList();
             dg_Workwers.ItemsSource = sot;
 
-            //dg_Contracts.ItemsSource = FitnesEntities.GetContext().Contracts.ToList();
-
-
             //Отчет
-
             cb_View.ItemsSource=FitnesEntities.GetContext().Class.ToList();
             cb_Trainer.ItemsSource = FitnesEntities.GetContext().Trainers.ToList();
 
@@ -244,8 +242,6 @@ namespace WpfApp2
                     add.tb_Patronymic.Text = clients.Patronymic;
                     add.tbl.Text = clients.id_Client.ToString();
                     add.lbl_Status.Content = clients.Status;
-                    //tci_Otch.Visibility = Visibility.Visible;
-                    //tci_Contract.Visibility = Visibility.Visible;
                     this.Close();
                 }
             }
@@ -286,11 +282,6 @@ namespace WpfApp2
                         break;
                     }
                     else x = false;
-                    //else
-                    //    if (p.Name != q.Clients.Name && p.Surname != q.Clients.Surname && p.Patronymic != q.Clients.Patronymic)
-                    //{ 
-                    //    MyMessageBox.Show("Удаление", "Удаление успешно проведено!", MessageBoxButton.OK); break; 
-                    //}
                 }
              
             }
@@ -305,80 +296,6 @@ namespace WpfApp2
                 catch (Exception ex) { MyMessageBox.Show("Ошибка удаления",ex.Message.ToString(), MessageBoxButton.OK); }
             }
             Update();
-
-            //if (MessageBox.Show($"Количество записей: " + "{clientDelete.Count()}" + ". Желаете удалить? ", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            //{
-            //    if (dg_Contracts..Contains(clientDelete))
-            //    {
-            //        MyMessageBox.Show("Ошибка удаления", "В таблице Договоры есть связь с клиентом", MessageBoxButton.OK)
-
-            //    }
-            //    else
-            //        try
-            //        {
-            //            FitnesEntities.GetContext().Clients.RemoveRange(clientDelete);
-            //            FitnesEntities.GetContext().SaveChanges();
-            //            MessageBox.Show("Удалено");
-            //        }
-            //        catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
-            //}
-
-            //foreach (var q in employees)
-            //{
-            //    //if (_client.Name == q.Clients.Name && _client.Surname == q.Clients.Surname && _client.Patronymic == q.Clients.Patronymic)
-            //    //{
-            //    //    MyMessageBox.Show("Ошибка удаления", "В таблице Договоры есть связь с клиентом", MessageBoxButton.OK); break;
-            //    //}
-
-            //if(dg_Clients.SelectedItems.Contains(q.Clients.Name) && dg_Clients.SelectedItems.Contains(q.Clients.Surname) && dg_Clients.SelectedItems.Contains(q.Clients.Patronymic))
-            //{
-            //    MyMessageBox.Show("Ошибка удаления", "В таблице Договоры есть связь с клиентом", MessageBoxButton.OK); break;
-            //}
-
-            //    else MyMessageBox.Show("Удаление", "Удаление успешно проведено!", MessageBoxButton.OK); break;
-            //}           
-
-
-            //foreach (var p in dg_Contracts.Items)
-            //{
-            //if (dg_Contracts.Items.Contains(_client.Passport_data))
-            //{
-            //    MyMessageBox.Show("Ошибка удаления", "В таблице Договоры есть связь с клиентом", MessageBoxButton.OK);
-            //}
-            //}
-
-
-            //if (MessageBox.Show($"Количество записей: " + "{clientDelete.Count()}" + ". Желаете удалить? ", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            //{
-            //    if (dg_Contracts.Items.Contains(clientDelete))
-            //    {
-            //        MyMessageBox.Show("Ошибка удаления", "В таблице Договоры есть связь с клиентом", MessageBoxButton.OK)
-
-            //    }
-            //    else
-            //        try
-            //    {
-            //        FitnesEntities.GetContext().Clients.RemoveRange(clientDelete);
-            //        FitnesEntities.GetContext().SaveChanges();
-            //        MessageBox.Show("Удалено");
-            //    }
-            //    catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
-            //}
-            //Clients c = dg_Clients.SelectedItem as Clients;
-            //if (MyMessageBox.Show("Сообщение об удалении", "Внимание, клиент " + c.Name + " " + c.Surname + " " + c.Patronymic + " " + "будет перенесён в состав неактивных клиентов!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-            //{
-            //    try
-            //    {
-            //        c.Status = "Неактивный";
-            //        FitnesEntities.GetContext().SaveChanges();
-            //        MyMessageBox.Show("Сообщение об успешном удалении", "Клиент " + c.Name + " " + c.Surname + " " + c.Patronymic + " " + "перенесён в статус Неактивных клиентов", MessageBoxButton.OK);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show(ex.Message.ToString());
-            //    }
-            //}
-
         }
         private void btn_RedContr_Click(object sender, RoutedEventArgs e)
         {
@@ -392,10 +309,7 @@ namespace WpfApp2
         }
         private void btn_DelContr_Click(object sender, RoutedEventArgs e)
         {
-
-
-            //Коллекция выделенных строк
-            var contrDelete = dg_Contracts.SelectedItems.Cast<Contracts>().ToList(); //Cast - присвоение объектов к типу Agent
+            var contrDelete = dg_Contracts.SelectedItems.Cast<Contracts>().ToList(); 
 
             if (MyMessageBox.Show("Сообщение об удалении", "Внимание, договор будет безвозвратно удалён ", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
@@ -458,10 +372,6 @@ namespace WpfApp2
 
         private void Window_Activated(object sender, EventArgs e)
         {
-            //dg_Clients.ItemsSource = FitnesEntities.GetContext().Clients.ToList();
-            //dg_Contracts.ItemsSource = FitnesEntities.GetContext().Contracts.ToList();
-            //dg_Trainers.ItemsSource = FitnesEntities.GetContext().Trainers.ToList();
-            //dg_Workwers.ItemsSource = FitnesEntities.GetContext().Workers.ToList();
             Update();
             Cont();
         }
@@ -518,8 +428,6 @@ namespace WpfApp2
                 b = false;
             }
            else { this.WindowState = WindowState.Normal; b = true; }
-
-            //WindowStyle = WindowStyle.None;
         }
 
         private void dg_Contracts_MouseDown(object sender, MouseButtonEventArgs e)
@@ -548,8 +456,6 @@ namespace WpfApp2
         {
             Update();
         }
-
-      
 
         private void cb_Trainer_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -622,23 +528,8 @@ namespace WpfApp2
             {
                 Contracts c = dg_Contracts.SelectedItem as Contracts;
                 MyMessageBox.Show("Информация о клиенте","ФИО: " + c.Clients.Surname  + " " + c.Clients.Name + " " + c.Clients.Patronymic + "; \nПаспортные данные: " + c.Clients.Passport_data + "; \nНомер телефона: " + c.Clients.Telephone, MessageBoxButton.OK);
-                //FitnesEntities.GetContext().Contracts.RemoveRange(contrDelete);
             }
             catch { }
         }
     }
-    //class AgeToColorConverter : IValueConverter
-    //{
-    //    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    //    {
-    //        // Все проверки для краткости выкинул
-    //        return (string)value == "Неактивен" ?
-    //            new SolidColorBrush(Colors.Red)
-    //            : new SolidColorBrush(Colors.White);
-    //    }
-    //    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    //    {
-    //        throw new Exception("The method or operation is not implemented.");
-    //    }
-    //}
 }

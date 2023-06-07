@@ -203,9 +203,9 @@ namespace WpfApp2
         }
 
         private void img_Close_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.Close();
+        {  
             FitnessApp app = new FitnessApp();
+            this.Close();
             app.tc.SelectedItem = app.tci_Workers;
             app.Show();
         }

@@ -164,9 +164,9 @@ namespace WpfApp2
         private void img_Close_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             FitnessApp app = new FitnessApp();
+            this.Close(); 
             app.tc.SelectedItem = app.tci_Contract;
             app.Show();
-            this.Close();
            
         }
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)

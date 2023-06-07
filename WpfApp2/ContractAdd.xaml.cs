@@ -88,7 +88,7 @@ namespace WpfApp2
                             switch (cb_SeasonTicket.Text)
                             {
                                 case "1": tb_Cost.Text = tb_Cost.Text; break;
-                                case "30": tb_Cost.Text = Convert.ToString((Convert.ToInt32(tb_Cost.Text) * 30) * 15 / 100); break;
+                                case "30": tb_Cost.Text = Convert.ToString((Convert.ToInt32(tb_Cost.Text) * 30 ) * 15 / 100); break;
                                 case "90": tb_Cost.Text = Convert.ToString((Convert.ToInt32(tb_Cost.Text) * 90) * 16 / 100); break;
                                 case "120": tb_Cost.Text = Convert.ToString((Convert.ToInt32(tb_Cost.Text) * 120) * 18 / 100); break;
                                 case "360": tb_Cost.Text = Convert.ToString((Convert.ToInt32(tb_Cost.Text) * 360) * 20 / 100); break;

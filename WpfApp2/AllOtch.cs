@@ -108,6 +108,7 @@ namespace WpfApp2
 
                         if (cb_Trainer.Text == p.Trainers.Surname && cb_Type.Text == p.Class.Type && cb_View.Text == p.Class.Name && cb_SeasonTicket.Text == p.SeasonTicket.Days.ToString())
                         {
+                            works.Range["A1"].Value = works.Range["A1"].Value + " Тренер: " + cb_Trainer.Text + ". Тип занятий: " + cb_Type.Text + ". Вид занятия: " + cb_View.Text + ". Количество дней абонемента: " + cb_SeasonTicket.Text;
                             works.Range["A" + i].Value = p.Date_of_conclusion;
                             works.Range["B" + i].Value = p.Clients.Name;
                             works.Range["C" + i].Value = p.Clients.Surname;
@@ -122,6 +123,7 @@ namespace WpfApp2
                         }
                         if (cb_Trainer.Text == "" && cb_Type.Text == p.Class.Type && cb_View.Text == p.Class.Name && cb_SeasonTicket.Text == p.SeasonTicket.Days.ToString())
                         {
+                            works.Range["A1"].Value = works.Range["A1"].Value +  " Тип занятий: " + cb_Type.Text + ". Вид занятия: " + cb_View.Text + ". Количество дней абонемента: " + cb_SeasonTicket.Text;
                             works.Range["A" + i].Value = p.Date_of_conclusion;
                             works.Range["B" + i].Value = p.Clients.Name;
                             works.Range["C" + i].Value = p.Clients.Surname;
@@ -136,7 +138,7 @@ namespace WpfApp2
                         }
                         if (cb_Trainer.Text == p.Trainers.Surname && cb_Type.Text == p.Class.Type && cb_View.Text == p.Class.Name && cb_SeasonTicket.Text == "")
                         {
-                            works.Range["A1"].Value = works.Range["A1"].Value + "Тренер: " + cb_Trainer.Text + " по типу: " + cb_Type.Text + " и виду занятия: " + cb_View.Text;
+                            works.Range["A1"].Value = works.Range["A1"].Value + " Тренер: " + cb_Trainer.Text + ". Тип занятий: " + cb_Type.Text + ". Вид занятия: " + cb_View.Text;
                             works.Range["A" + i].Value = p.Date_of_conclusion;
                             works.Range["B" + i].Value = p.Clients.Name;
                             works.Range["C" + i].Value = p.Clients.Surname;
@@ -165,7 +167,7 @@ namespace WpfApp2
                         }
                         if (cb_Trainer.Text == "" && cb_Type.Text == p.Class.Type && cb_View.Text == "" && cb_SeasonTicket.Text == "")
                         {
-                            works.Range["A1"].Value = works.Range["A1"].Value + " по типу занятий";
+                            works.Range["A1"].Value = works.Range["A1"].Value + " Тип занятий" + cb_Type.Text ;
                             works.Range["A" + i].Value = p.Date_of_conclusion;
                             works.Range["B" + i].Value = p.Clients.Name;
                             works.Range["C" + i].Value = p.Clients.Surname;
@@ -180,7 +182,7 @@ namespace WpfApp2
                         }
                         if (cb_Trainer.Text == "" && cb_Type.Text == p.Class.Type && cb_View.Text == p.Class.Name && cb_SeasonTicket.Text == "")
                         {
-                            works.Range["A1"].Value = works.Range["A1"].Value + " по типу " + cb_Type.Text + " и виду занятия " + cb_View.Text;
+                            works.Range["A1"].Value = works.Range["A1"].Value + " Тип: " + cb_Type.Text + ". Вид занятия: " + cb_View.Text;
                             works.Range["A" + i].Value = p.Date_of_conclusion;
                             works.Range["B" + i].Value = p.Clients.Name;
                             works.Range["C" + i].Value = p.Clients.Surname;
@@ -195,7 +197,7 @@ namespace WpfApp2
                         }
                         if (cb_Trainer.Text == "" && cb_Type.Text == "" && cb_View.Text == "" && cb_SeasonTicket.Text == p.SeasonTicket.Days.ToString())
                         {
-                            works.Range["A1"].Value = works.Range["A1"].Value + " по сроку абонемента: " + cb_SeasonTicket.Text + " дней";
+                            works.Range["A1"].Value = works.Range["A1"].Value + " Срок абонемента: " + cb_SeasonTicket.Text + " дней";
                             works.Range["A" + i].Value = p.Date_of_conclusion;
                             works.Range["B" + i].Value = p.Clients.Name;
                             works.Range["C" + i].Value = p.Clients.Surname;
@@ -211,7 +213,7 @@ namespace WpfApp2
 
                         if (cb_Trainer.Text == p.Trainers.Surname && cb_Type.Text == "" && cb_View.Text == "" && cb_SeasonTicket.Text == "")
                         {
-                            works.Range["A1"].Value = works.Range["A1"].Value + " по тренеру: " + cb_Trainer.Text;
+                            works.Range["A1"].Value = works.Range["A1"].Value + " Тренер: " + cb_Trainer.Text;
                             works.Range["A" + i].Value = p.Date_of_conclusion;
                             works.Range["B" + i].Value = p.Clients.Name;
                             works.Range["C" + i].Value = p.Clients.Surname;
@@ -227,7 +229,7 @@ namespace WpfApp2
 
                         if (cb_Trainer.Text == p.Trainers.Surname && cb_Type.Text == p.Class.Type && cb_View.Text == "" && cb_SeasonTicket.Text == "")
                         {
-                            works.Range["A1"].Value = works.Range["A1"].Value + "Тренер: " + cb_Trainer.Text + " по типу занятий: " + cb_Type.Text;
+                            works.Range["A1"].Value = works.Range["A1"].Value + "Тренер: " + cb_Trainer.Text + ". Тип занятий: " + cb_Type.Text;
                             works.Range["A" + i].Value = p.Date_of_conclusion;
                             works.Range["B" + i].Value = p.Clients.Name;
                             works.Range["C" + i].Value = p.Clients.Surname;
@@ -242,7 +244,7 @@ namespace WpfApp2
                         }
                         if (cb_Trainer.Text == p.Trainers.Surname && cb_Type.Text == "" && cb_View.Text == "" && cb_SeasonTicket.Text == p.SeasonTicket.Days.ToString())
                         {
-                            works.Range["A1"].Value = works.Range["A1"].Value + "Тренер: " + cb_Trainer.Text + " по количеству дней абонемента: " + cb_SeasonTicket.Text;
+                            works.Range["A1"].Value = works.Range["A1"].Value + "Тренер: " + cb_Trainer.Text + ". Количество дней абонемента: " + cb_SeasonTicket.Text;
                             works.Range["A" + i].Value = p.Date_of_conclusion;
                             works.Range["B" + i].Value = p.Clients.Name;
                             works.Range["C" + i].Value = p.Clients.Surname;
@@ -285,10 +287,6 @@ namespace WpfApp2
                             works.Range["J" + i].Value = p.Workers.Surname;
                             i++;
                         }
-
-                        works.Range["I3:I300"].NumberFormat = "## ###,00";
-                        works.Range["B15"].NumberFormat = "## ###,00";
-                        works.Range["C5:C9"].NumberFormat = "## ###,00";
                         works.Range["B15"].Formula = $"=SUM(I18:I300)";
                         works.Range["B14"].Formula = $"=COUNTA(B18:B300)";
                         works.Range["B5"].Formula = $"=COUNTIFS( $F$18:$F$300, {"\"Спортивный бассейн\""}, $E$18:$E$300, {"\"Групповой\""})";

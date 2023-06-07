@@ -68,6 +68,7 @@ namespace WpfApp2
                             f.btn_DelClient.Visibility = Visibility.Collapsed;
                             f.btn_DelContr.Visibility = Visibility.Collapsed;
                             f.Show();
+                            this.Close();
                             break;
 
                         case 3:
@@ -88,11 +89,13 @@ namespace WpfApp2
                             f.btn_RedClient.Visibility = Visibility.Collapsed;
                             f.btn_RedWorker.Visibility = Visibility.Collapsed;
                             f.btn_RedContr.Visibility = Visibility.Collapsed;
+                            this.Close();
                             break;
 
                         case 2:
                             MyMessageBox.Show("Вход в учетную запись", "Старший администратор: " + p.Surname + " " + p.Name + " " + p.Patronymic + "\nДобро пожаловать!", MessageBoxButton.OK);
                             f.Show();
+                            this.Close();
                             break;
                     }
                     check = true;

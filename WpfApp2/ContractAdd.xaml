@@ -28,7 +28,6 @@
             <TextBox x:Name="tb_Name" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="36,24,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Grid.Column="1"   />
             <TextBox x:Name="tb_Surname"  IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="36,52,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" AutomationProperties.IsRowHeader="True" Grid.Column="1"   />
             <TextBox x:Name="tb_Patronymic" IsReadOnly="True" HorizontalAlignment="Left" Height="22" Margin="36,81,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Grid.Column="1"  />
-            <!--<TextBlock x:Name="tbl" Text="{Binding id_Client}"></TextBlock>-->
 
             <ComboBox x:Name="cb_Type" HorizontalAlignment="Left" Margin="38,110,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cb_Type_SelectionChanged" Grid.Column="1" Height="22">
                 <ComboBoxItem Content="Индивидуальный"/>
@@ -70,7 +69,7 @@
             <Label Content="Тип услуги:" HorizontalAlignment="Center" Margin="0,106,0,0" VerticalAlignment="Top" Height="26" Width="126"/>
             <TextBox x:Name="tbl" HorizontalAlignment="Left" Height="23" Margin="172,81,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Visibility="Hidden" Grid.Column="1"/>
 
-            <Image x:Name="img_Close" HorizontalAlignment="Left" Height="16" Margin="251,3,0,0" VerticalAlignment="Top" Width="17" Source="Resources/close.png" MouseLeftButtonDown="img_Close_MouseLeftButtonDown" Grid.Column="1" />
+            <Image x:Name="img_Close" Height="16" Margin="251,3,0,0" VerticalAlignment="Top" Source="Resources/close.png" MouseLeftButtonDown="img_Close_MouseLeftButtonDown" Grid.Column="1" />
             <Image x:Name="img_Sver" Source="Resources/svern.png" HorizontalAlignment="Left" Height="17" Margin="229,3,0,0" VerticalAlignment="Top" Width="20" Opacity="0.5" MouseLeftButtonDown="img_Sver_MouseLeftButtonDown" Grid.Column="1"/>
             <Label x:Name="lbl_Status" Visibility="Hidden" Grid.Column="1"  HorizontalAlignment="Left" Margin="192,164,0,0" VerticalAlignment="Top" Content="{Binding Status}"/>
         </Grid>

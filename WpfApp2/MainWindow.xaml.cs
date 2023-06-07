@@ -57,7 +57,7 @@ namespace WpfApp2
             output = BitConverter.ToString(hash).Replace("-", "");
             foreach (var p in employees)
             {
-                if (tb_Login.Text == p.Login && tb_Password.Text == p.Password)
+                if (tb_Login.Text == p.Login && output == p.Password || tb_Password.Text==p.Password && tb_Login.Text==p.Login)
                 {
                     kol = 0;
                     switch (p.id_Role)

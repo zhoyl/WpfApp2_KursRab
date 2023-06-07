@@ -162,12 +162,12 @@
                 <TextBox x:Name="tb_Telephone" MaxLength="11"  HorizontalAlignment="Left" Height="24" Margin="0,10,0,10" TextWrapping="Wrap" Text="{Binding Telephone}" VerticalAlignment="Top" Width="143" Grid.ColumnSpan="2" Grid.Row="1" TextChanged="tb_Telephone_TextChanged"/>
                 <TextBox x:Name="tb_Login" Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="0,0,0,10" TextWrapping="Wrap" Text="{Binding Login}" Width="140" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="1"/>
                 <TextBox x:Name="tb_Password" Visibility="Hidden"    HorizontalAlignment="Left" Height="24" Margin="0,0,0,10" TextWrapping="Wrap" Text="{Binding Password}" Width="140" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="1" TextChanged="tb_Password_TextChanged"/>
-                <ComboBox x:Name="cb_Role" Visibility="Hidden"   Margin="0,0,0,5" HorizontalAlignment="Left" SelectedItem="Role" DisplayMemberPath="Role_Name" Width="140" />
+                <ComboBox x:Name="cb_Role" Visibility="Hidden"   Margin="0,0,0,5" HorizontalAlignment="Left" SelectedItem="{Binding Role}" DisplayMemberPath="Role_Name" SelectedValuePath="Role_Name"  Width="140" />
                 <TextBox x:Name="tb_Email" Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="0,0,0,15" TextWrapping="Wrap" Text="{Binding Email}" Width="140" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="1" />
 
 
                 <TextBox Visibility="Hidden"   x:Name="tb_Experience" Margin="0,-135,0,0"   HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" Text="{Binding Experience}" VerticalAlignment="Top" Width="140" Grid.ColumnSpan="2" Grid.Row="1" TextChanged="tb_Experience_TextChanged" />
-                <ComboBox  Visibility="Hidden"  x:Name="cb_Category" Margin="0,-100,0,0"  HorizontalAlignment="Left" Height="24" SelectedItem="Categories" DisplayMemberPath="Num_Category" SelectedValuePath="Num_Category" VerticalAlignment="Top" Width="140" Grid.ColumnSpan="2" Grid.Row="1" />
+                <ComboBox  Visibility="Hidden"  x:Name="cb_Category" Margin="0,-100,0,0"  HorizontalAlignment="Left" Height="24"  SelectedItem="{Binding Categories}" DisplayMemberPath="Num_Category" SelectedValuePath="Num_Category" VerticalAlignment="Top" Width="140" Grid.ColumnSpan="2" Grid.Row="1" />
 
             </StackPanel>
             <Button x:Name="btn_SaveWork"  Content="Сохранить" HorizontalAlignment="Left" Margin="0,5,0,25"  Width="140" Click="btn_SaveWork_Click" Grid.Row="2" Grid.Column="1" />

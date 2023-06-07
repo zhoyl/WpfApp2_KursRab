@@ -28,8 +28,8 @@
 
         </Grid.RowDefinitions>
         <Label Content="Авторизация" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Height="38" Width="153" />
-        <TextBox x:Name="tb_Login"  HorizontalAlignment="Left" Margin="187,32,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="141" Height="28" TextChanged="tb_Login_TextChanged" ForceCursor="True"/>
-        <TextBox x:Name="tb_Password" HorizontalAlignment="Left" Margin="187,72,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="141" Height="28" TextChanged="tb_Password_TextChanged"/>
+            <TextBox x:Name="tb_Login" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="187,32,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="141" Height="28" TextChanged="tb_Login_TextChanged" ForceCursor="True"/>
+            <TextBox x:Name="tb_Password" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="187,72,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="141" Height="28" TextChanged="tb_Password_TextChanged"/>
         <Label Content="Пароль:" HorizontalAlignment="Left" Margin="121,73,0,0" VerticalAlignment="Top" Grid.Row="1" Height="27" Width="61" />
         <Label Content="Логин:" HorizontalAlignment="Left" Margin="133,32,0,0" VerticalAlignment="Top" Grid.Row="1" Height="27" Width="52"/>
         <Button x:Name="btn_Entry" Content="Войти" HorizontalAlignment="Left" Margin="168,37,0,0" Grid.Row="2" VerticalAlignment="Top" Height="27" Width="105" Click="btn_Entry_Click" Background="#FF46589E"  />

@@ -30,6 +30,7 @@ namespace WpfApp2
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
         {
+            FitnessApp app = new FitnessApp();
             lbl_Status.Content = "Активный";
             _clients.Status = lbl_Status.Content.ToString();
             DataContext = _clients;
@@ -48,7 +49,10 @@ namespace WpfApp2
             {
                 FitnesEntities.GetContext().SaveChanges();
                 MyMessageBox.Show("Добавление улиента","Клиент добавлен", MessageBoxButton.OK);
+                app.tc.SelectedItem = app.tci_Clients;
+                app.Show();
                 Close();
+               
             }
             catch (Exception ex)
             {
@@ -64,6 +68,9 @@ namespace WpfApp2
         private void img_Close_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.Close();
+            FitnessApp app = new FitnessApp();
+            app.tc.SelectedItem = app.tci_Clients;
+            app.Show();
         }
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
@@ -78,24 +85,9 @@ namespace WpfApp2
         {
 
         }
-        int name = 0;
-        int surname = 0;
-        int patro = 0;
+
         private void tb_Name_TextChanged(object sender, TextChangedEventArgs e)
         {
-            name++;
-            if (name == 1)
-            {
-                tb_Name.Text = tb_Name.Text[0].ToString().ToUpper();
-            }
-            else
-            {
-                tb_Name.SelectionStart = tb_Name.Text.Length;
-            }
-            if (tb_Name.Text.Length == 0)
-            {
-                name = 0;
-            }
             if (sender is TextBox textBox)
             {
                 tb_Name.Text = new string(textBox.Text.Where(ch => (ch >= 'а' && ch <= 'я') || (ch >= 'А' && ch <= 'Я') || ch == 'ё' || ch == 'Ё').ToArray());
@@ -104,19 +96,6 @@ namespace WpfApp2
 
         private void tb_Surname_TextChanged(object sender, TextChangedEventArgs e)
         {
-            surname++;
-            if (surname == 1)
-            {
-                tb_Surname.Text = tb_Surname.Text[0].ToString().ToUpper();
-            }
-            else
-            {
-                tb_Surname.SelectionStart = tb_Surname.Text.Length;
-            }
-            if (tb_Surname.Text.Length == 0)
-            {
-                surname = 0;
-            }
             if (sender is TextBox textBox)
             {
                 tb_Surname.Text = new string(textBox.Text.Where(ch => (ch >= 'а' && ch <= 'я') || (ch >= 'А' && ch <= 'Я') || ch == 'ё' || ch == 'Ё').ToArray());
@@ -125,19 +104,6 @@ namespace WpfApp2
 
         private void tb_Patronymic_TextChanged(object sender, TextChangedEventArgs e)
         {
-            patro++;
-            if (patro == 1)
-            {
-                tb_Patronymic.Text = tb_Patronymic.Text[0].ToString().ToUpper();
-            }
-            else
-            {
-                tb_Patronymic.SelectionStart = tb_Patronymic.Text.Length;
-            }
-            if (tb_Patronymic.Text.Length == 0)
-            {
-                patro = 0;
-            }
             if (sender is TextBox textBox)
             {
                 tb_Patronymic.Text = new string(textBox.Text.Where(ch => (ch >= 'а' && ch <= 'я') || (ch >= 'А' && ch <= 'Я') || ch == 'ё' || ch == 'Ё').ToArray());

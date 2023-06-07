@@ -29,11 +29,10 @@ namespace WpfApp2
         public AddWorkers(Workers selectedWorkers, Trainers selectedTrainers)
         {
             InitializeComponent();
-            if (selectedWorkers != null) { _workers = selectedWorkers; AccessWork();    DataContext= _workers; }
-            if (selectedTrainers != null) { _trainers = selectedTrainers; AccessTrain(); DataContext = _trainers; }
+            if (selectedWorkers != null) { _workers = selectedWorkers; AccessWork();  rb_Workers.IsChecked = true;  DataContext= _workers; }
+            if (selectedTrainers != null) { _trainers = selectedTrainers; AccessTrain(); rb_Trainers.IsChecked = true; DataContext = _trainers; }
             cb_Role.ItemsSource = FitnesEntities.GetContext().Role.ToList();
-            DataContext = _workers;
-            cb_Category.ItemsSource=FitnesEntities.GetContext().Categories.ToList();    
+            cb_Category.ItemsSource=FitnesEntities.GetContext().Categories.ToList();
         }
 
         private void rb_Workers_Checked(object sender, RoutedEventArgs e)
@@ -45,7 +44,8 @@ namespace WpfApp2
             AccessTrain();
         }
         private void btn_SaveWork_Click(object sender, RoutedEventArgs e)
-        { 
+        {
+            FitnessApp app = new FitnessApp();
             lbl_Status.Content = "Работает";
             Worker();
            
@@ -73,7 +73,10 @@ namespace WpfApp2
             {
                 FitnesEntities.GetContext().SaveChanges();
                 MyMessageBox.Show("Добавление", "Добавление произошло успешно!", MessageBoxButton.OK);
+                app.tc.SelectedItem = app.tci_Workers;
+                app.Show();
                 Close();
+                
             }
             catch (Exception ex)
             {
@@ -82,6 +85,7 @@ namespace WpfApp2
         }
         private void btn_SaveTrain_Click(object sender, RoutedEventArgs e)
         {
+            FitnessApp app = new FitnessApp();
             lbl_Status.Content = "Работает";
             Trainer();
             DataContext = _trainers;
@@ -93,6 +97,7 @@ namespace WpfApp2
             if (string.IsNullOrWhiteSpace(_trainers.Passport_data)) { error.AppendLine("Укажите паспортные данные "); }
             if (_trainers.Experience < 0 || _trainers.Experience > 100) { error.AppendLine("Укажите корректных опыт работы тренера"); }
             if (string.IsNullOrWhiteSpace(_trainers.Experience.ToString())) { error.AppendLine("Укажите опыт работы тренера"); }
+            if (cb_Category.SelectedIndex < 0) { error.AppendLine("Укажите категорию  тренера"); }
 
             if (error.Length > 0) { MyMessageBox.Show("Ошибка добавления!", error.ToString(), MessageBoxButton.OK); return; }
 
@@ -101,15 +106,16 @@ namespace WpfApp2
             string s = tb_Name.Text;
             string s1 = tb_Surname.Text;
             string s2 = tb_Patronymic.Text;
-         
-
-          
 
             try
             {
                 FitnesEntities.GetContext().SaveChanges();
-                MyMessageBox.Show("Добавление", "Добавление произошло успешно!", MessageBoxButton.OK);
+                MyMessageBox.Show("Добавление", "Добавление произошло успешно!", MessageBoxButton.OK);  
+                app.tc.SelectedItem = app.tci_Workers;
+                app.Show();
                 Close();
+             
+
             }
             catch (Exception ex)
             {
@@ -199,6 +205,9 @@ namespace WpfApp2
         private void img_Close_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.Close();
+            FitnessApp app = new FitnessApp();
+            app.tc.SelectedItem = app.tci_Workers;
+            app.Show();
         }
 
         private void gd_MouseDown(object sender, MouseButtonEventArgs e)
@@ -221,24 +230,8 @@ namespace WpfApp2
         {
             
         }
-        int name = 0;
-        int surname = 0;
-        int patro = 0;
         private void tb_Name_TextChanged(object sender, TextChangedEventArgs e)
         {
-            name++;
-            if (name == 1)
-            {
-                tb_Name.Text = tb_Name.Text[0].ToString().ToUpper();
-            }
-            else
-            {
-                tb_Name.SelectionStart = tb_Name.Text.Length;
-            }
-            if (tb_Name.Text.Length == 0)
-            {
-                name = 0;
-            }
             if (sender is TextBox textBox)
             {
                 tb_Name.Text = new string(textBox.Text.Where(ch => (ch >= 'а' && ch <= 'я') || (ch >= 'А' && ch <= 'Я') || ch == 'ё' || ch == 'Ё').ToArray());
@@ -247,19 +240,6 @@ namespace WpfApp2
         
         private void tb_Surname_TextChanged(object sender, TextChangedEventArgs e)
         {
-            surname++;
-            if (surname == 1)
-            {
-                tb_Surname.Text = tb_Surname.Text[0].ToString().ToUpper();
-            }
-            else
-            {
-                tb_Surname.SelectionStart = tb_Surname.Text.Length;
-            }
-            if (tb_Surname.Text.Length == 0)
-            {
-                surname = 0;
-            }
             if (sender is TextBox textBox)
             {
                 tb_Surname.Text = new string(textBox.Text.Where(ch => (ch >= 'а' && ch <= 'я') || (ch >= 'А' && ch <= 'Я') || ch == 'ё' || ch == 'Ё').ToArray());
@@ -268,19 +248,6 @@ namespace WpfApp2
 
         private void tb_Patronymic_TextChanged(object sender, TextChangedEventArgs e)
         {
-            patro++;
-            if (patro == 1)
-            {
-                tb_Patronymic.Text = tb_Patronymic.Text[0].ToString().ToUpper();
-            }
-            else
-            {
-                tb_Patronymic.SelectionStart = tb_Patronymic.Text.Length;
-            }
-            if (tb_Patronymic.Text.Length == 0)
-            {
-                patro = 0;
-            }
             if (sender is TextBox textBox)
             {
                 tb_Patronymic.Text = new string(textBox.Text.Where(ch => (ch >= 'а' && ch <= 'я') || (ch >= 'А' && ch <= 'Я') || ch == 'ё' || ch == 'Ё').ToArray());

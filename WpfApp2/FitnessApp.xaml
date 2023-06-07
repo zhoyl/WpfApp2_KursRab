@@ -126,9 +126,9 @@
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Grid.Column="0">
-                            <Button x:Name="btn_AddClient" Content="Добавить &#xD;&#xA;клиента" Click="btn_AddClient_Click" Margin="10,40,0,10" FontSize="14"  Width="115" Height="40"/>
-                            <Button x:Name="btn_RedClient" Content="Реадктировать&#xD;&#xA; клиента" Margin="10,0,0,10" Click="btn_RedClient_Click" IsEnabled="False" FontFamily="Consolas" FontSize="14" Width="115" Height="40"/>
-                            <Button x:Name="btn_DelClient" Content="Удалить &#xD;&#xA;клиента" Margin="10,0,0,0" Click="btn_DelClient_Click" IsEnabled="False" FontSize="14" Width="115" Height="40" />
+                            <Button x:Name="btn_AddClient" Content="Добавить&#xD;&#xA;клиента" Click="btn_AddClient_Click" Margin="10,40,0,10" FontSize="14"  Width="115" Height="40"/>
+                            <Button x:Name="btn_RedClient" FontFamily="Arial"  Content="Редактировать&#xD;&#xA;клиента" Margin="10,0,0,10" Click="btn_RedClient_Click" IsEnabled="False"  FontSize="14" Width="115" Height="40" />
+                            <Button x:Name="btn_DelClient" Content="Удалить&#xD;&#xA;клиента" Margin="10,0,0,0" Click="btn_DelClient_Click" IsEnabled="False" FontSize="14" Width="115" Height="40" />
 
                         </StackPanel>
 

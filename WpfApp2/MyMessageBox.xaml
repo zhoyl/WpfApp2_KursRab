@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
-       Title="Message Box" Height="200" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"  Background="Transparent" Foreground="#FFE5E7FB" FontSize="14" FontFamily="Arial" >
+       Title="Message Box" Height="200" Width="365" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"  Background="Transparent" Foreground="#FFE5E7FB" FontSize="14" FontFamily="Arial" >
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

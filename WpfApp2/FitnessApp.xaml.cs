@@ -179,7 +179,8 @@ namespace WpfApp2
                 || p.Surname.ToLower().Contains(tb_Search.Text.ToLower())
                 || p.Patronymic.ToLower().Contains(tb_Search.Text.ToLower())
                 || p.Telephone.ToLower().Contains(tb_Search.Text.ToLower())
-                || p.Status.ToLower().Contains(tb_Search.Text.ToLower())).ToList();
+                || p.Status.ToLower().Contains(tb_Search.Text.ToLower())
+                || p.Passport_data.ToLower().Contains(tb_Search.Text.ToLower())).ToList();
             dg_Clients.ItemsSource = query;
 
             train = train.Where(
@@ -187,7 +188,8 @@ namespace WpfApp2
                 || p.Surname.ToLower().Contains(tb_SearchWorker.Text.ToLower())
                 || p.Patronymic.ToLower().Contains(tb_SearchWorker.Text.ToLower())
                 || p.Telephone.ToLower().Contains(tb_SearchWorker.Text.ToLower())
-                || p.Status.ToLower().Contains(tb_SearchWorker.Text.ToLower())).ToList();
+                || p.Status.ToLower().Contains(tb_SearchWorker.Text.ToLower())
+                || p.Passport_data.ToLower().Contains(tb_SearchWorker.Text.ToLower())).ToList();
             dg_Trainers.ItemsSource = train;
 
         
@@ -196,7 +198,8 @@ namespace WpfApp2
                 || p.Surname.ToLower().Contains(tb_SearchWorker.Text.ToLower())
                 || p.Patronymic.ToLower().Contains(tb_SearchWorker.Text.ToLower())
                 || p.Telephone.ToLower().Contains(tb_SearchWorker.Text.ToLower())
-                || p.Status.ToLower().Contains(tb_SearchWorker.Text.ToLower())).ToList();
+                || p.Status.ToLower().Contains(tb_SearchWorker.Text.ToLower())
+                || p.Passport_data.ToLower().Contains(tb_SearchWorker.Text.ToLower())).ToList();
             dg_Workwers.ItemsSource = sot;
 
             //Отчет
@@ -226,6 +229,7 @@ namespace WpfApp2
         {
             AddClient add = new AddClient(null);
             add.Show();
+            this.Close();
         } 
 
         private void dg_Clients_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -261,6 +265,7 @@ namespace WpfApp2
             {
                 AddClient add = new AddClient(dg_Clients.SelectedItem as Clients);
                 add.ShowDialog();
+                this.Close();
             }
             catch  { MyMessageBox.Show("Уведомление об ошибке", "Выберите клиента, которого нужно отредактировать", MessageBoxButton.OK); }
         }
@@ -300,10 +305,10 @@ namespace WpfApp2
         private void btn_RedContr_Click(object sender, RoutedEventArgs e)
         {
             if (dg_Contracts.SelectedIndex > -1)
-            {
+            {   
                 ContractAdd add = new ContractAdd(dg_Contracts.SelectedItem as Contracts);
                 add.ShowDialog();
-                
+                this.Close();       
             }
             else { MyMessageBox.Show("Уведомление об ошибке", "Выберите договор, который нужно отредактировать", MessageBoxButton.OK); }
         }
@@ -328,30 +333,51 @@ namespace WpfApp2
 
         private void btn_RedWorker_Click(object sender, RoutedEventArgs e)
         {
-            if (dg_Workwers.SelectedIndex > -1)
+            if (dg_Workwers.SelectedIndex > -1 || dg_Trainers.SelectedIndex>-1)
             {
                 AddWorkers add = new AddWorkers(dg_Workwers.SelectedItem as Workers, dg_Trainers.SelectedItem as Trainers);
                 add.ShowDialog();
+                this.Close();
             }
            else { MyMessageBox.Show("Уведомление об ошибке", "Выберите сотрудника, которого нужно отредактировать", MessageBoxButton.OK); }
         }
 
         private void btn_DelWorker_Click(object sender, RoutedEventArgs e)
         {
-            Workers w = dg_Workwers.SelectedItem as Workers;
-            if (MyMessageBox.Show("Сообщение об удалении", "Внимание, сотрудник " + w.Name + " " + w.Surname + " " + w.Patronymic + " " + "будет перенесён в состав нерабочих сотрудников!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (dg_Workwers.SelectedIndex >= 0)
             {
-                try
+                Workers w = dg_Workwers.SelectedItem as Workers;
+                if (MyMessageBox.Show("Сообщение об удалении", "Внимание, сотрудник " + w.Name + " " + w.Surname + " " + w.Patronymic + " " + "будет перенесён в состав нерабочих сотрудников!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    w.Status = "Не работает";
-                    w.Password = null;
-                    w.Login = null;
-                    FitnesEntities.GetContext().SaveChanges();
-                    MyMessageBox.Show("Сообщение об удалении", "Сотрудник " + w.Name + " " + w.Surname +" " +w.Patronymic + " "+ "перенесён в статус Не работает", MessageBoxButton.OK);
+                    try
+                    {
+                        w.Status = "Не работает";
+                        w.Password = null;
+                        w.Login = null;
+                        FitnesEntities.GetContext().SaveChanges();
+                        MyMessageBox.Show("Сообщение об удалении", "Сотрудник " + w.Name + " " + w.Surname + " " + w.Patronymic + " " + "перенесён в статус Не работает", MessageBoxButton.OK);
+                    }
+                    catch (Exception ex)
+                    {
+                        MyMessageBox.Show("Уведомление об ошибке", ex.Message.ToString(), MessageBoxButton.OK);
+                    }
                 }
-                catch (Exception ex)
+            }
+            if (dg_Trainers.SelectedIndex >= 0)
+            {
+                Trainers w1 = dg_Trainers.SelectedItem as Trainers;
+                if (MyMessageBox.Show("Сообщение об удалении", "Внимание, тренер " + w1.Name + " " + w1.Surname + " " + w1.Patronymic + " " + "будет перенесён в состав нерабочих сотрудников!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    MyMessageBox.Show("Уведомление об ошибке", ex.Message.ToString(), MessageBoxButton.OK);
+                    try
+                    {
+                        w1.Status = "Не работает";
+                        FitnesEntities.GetContext().SaveChanges();
+                        MyMessageBox.Show("Сообщение об удалении", "Тренер " + w1.Name + " " + w1.Surname + " " + w1.Patronymic + " " + "перенесён в статус Не работает", MessageBoxButton.OK);
+                    }
+                    catch (Exception ex)
+                    {
+                        MyMessageBox.Show("Уведомление об ошибке", ex.Message.ToString(), MessageBoxButton.OK);
+                    }
                 }
             }
         }
@@ -392,13 +418,13 @@ namespace WpfApp2
             btn_RedWorker.IsEnabled = true;
             btn_DelWorker.IsEnabled = true;
             dg_Trainers.SelectedItem = null;
-
         }
 
         private void btn_AddWorker_Click(object sender, RoutedEventArgs e)
         {
             AddWorkers add = new AddWorkers(null, null);
             add.Show();
+            this.Close();
         }
 
         private void dg_Trainers_SelectionChanged(object sender, SelectionChangedEventArgs e)

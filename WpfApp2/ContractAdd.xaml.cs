@@ -138,10 +138,11 @@ namespace WpfApp2
                 app.tci_Contract.Visibility = Visibility.Visible;
                 app.tci_Contract.IsEnabled = true;
                 FitnesEntities.GetContext().SaveChanges();
-                MyMessageBox.Show("Уведомление о сохранении","Запись добавлена", MessageBoxButton.OK);
-                Close();
+                MyMessageBox.Show("Уведомление о сохранении","Запись добавлена", MessageBoxButton.OK); 
                 app.tc.SelectedItem = app.tci_Contract;
                 app.Show();
+                Close();
+              
 
             }
             catch (Exception ex)
@@ -162,9 +163,11 @@ namespace WpfApp2
         }
         private void img_Close_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            this.Close();
             FitnessApp app = new FitnessApp();
+            app.tc.SelectedItem = app.tci_Contract;
             app.Show();
+            this.Close();
+           
         }
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
